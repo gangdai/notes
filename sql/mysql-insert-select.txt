@@ -1,0 +1,8 @@
+insert into orders_status_history (orders_id, orders_status_id, date_added, customer_notified, tracking_no)
+
+select orders_id, '3' as orders_status_id, now() as date_added, '0' as customer_notified, 'trackingnumer' as tracking_no
+
+from orders_status_history where orders_id='order_id' and not exists (select orders_id from orders_status_history where orders_status_id = '3' and orders_id='[{ReferenceNum}]');
+
+
+the above sql has advantages over the sql statement(insert () values ()) because the above allow to check condition e.g. if existing row with certain id already exist
